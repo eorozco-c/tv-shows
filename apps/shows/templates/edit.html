@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link
+      href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
+      rel="stylesheet"
+    />
+    <!-- UIkit CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/css/uikit.min.css"
+    />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/js/uikit-icons.min.js"></script>
+    <title>Update</title>
+  </head>
+  <body class="uk-padding">
+    <h1>Edit Show {{show.id}}</h1>
+    <a href="/shows">Go back <i class="icon-share-alt"></i></a>
+    <form
+      action="/shows/{{show.id}}/update"
+      method="POST"
+      class="uk-margin uk-width-1-2"
+    >
+      {% csrf_token %}
+      <label for="title">Title</label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        value="{{show.title}}"
+        class="uk-input"
+        required
+      />
+      <label for="network">Network</label>
+      <input
+        type="text"
+        id="network"
+        name="network"
+        value="{{show.network}}"
+        class="uk-input"
+        required
+      />
+      <label for="releaseDate">Release Date</label>
+      <input type="date" name="releaseDate" id="releaseDate"
+      value="{{show.release_date|date:"Y-m-d"}}" class="uk-input" required />
+      <label for="description">Description</label>
+      <textarea
+        class="uk-textarea"
+        name="description"
+        id="description"
+        cols="30"
+        rows="10"
+      >
+{{show.description}}</textarea
+      >
+      <input
+        class="uk-margin uk-button-primary uk-padding-small"
+        type="submit"
+        value="Update"
+      />
+    </form>
+  </body>
+</html>

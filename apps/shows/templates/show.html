@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link
+      href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
+      rel="stylesheet"
+    />
+    <!-- UIkit CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/css/uikit.min.css"
+    />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/js/uikit-icons.min.js"></script>
+    <title>Read (one)</title>
+  </head>
+  <body class="uk-padding">
+    <div>
+      <h1>TV Show {{show.id}}</h1>
+      <a href="/shows">Go back <i class="icon-share-alt"></i></a>
+      <p>Title: {{show.title}}</p>
+      <p>Network: {{show.network}}</p>
+      <p>Release Date: {{show.release_date}}</p>
+      <p>Description: {{show.description}}</p>
+    </div>
+    <div class="uk-margin-large-top">
+      <p>Last Updated: {{show.updated_at}}</p>
+      <a href="/shows/{{show.id}}/edit">Edit <i class="icon-pencil"></i></a>
+      <span> | </span>
+      <a href="/shows/{{show.id}}/destroy">Delete <i class="icon-trash"></i></a>
+    </div>
+  </body>
+</html>

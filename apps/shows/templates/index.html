@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link
+      href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
+      rel="stylesheet"
+    />
+    <!-- UIkit CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/css/uikit.min.css"
+    />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/js/uikit-icons.min.js"></script>
+    <title>Read (all)</title>
+  </head>
+  <body class="uk-padding-small">
+    <h1 class="">All Shows</h1>
+    <table class="uk-table uk-table-striped uk-table-hover">
+      <thead>
+        <tr>
+          <th class="">id</th>
+          <th class="">title</th>
+          <th class="">network</th>
+          <th class="">release_date</th>
+          <th class="">action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for show in shows %}
+        <tr>
+          <td class="">{{show.id}}</td>
+          <td class="">{{show.title}}</td>
+          <td class="">{{show.network}}</td>
+          <td class="">{{show.release_date}}</td>
+          <td class="">
+            <a href="/shows/{{show.id}}" id="show"
+              ><i class="icon-eye-open"></i></a
+            ><span>|</span
+            ><a href="/shows/{{show.id}}/edit" id="edit"
+              ><i class="icon-pencil"></i></a
+            ><span>|</span>
+            <a href="/shows/{{show.id}}/destroy" id="delete"
+              ><i class="icon-trash"></i
+            ></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <h1 class="">TV Shows</h1>
+    <table
+      class="uk-table uk-table-striped uk-table-hover uk-margin-medium-bottom"
+    >
+      <thead>
+        <tr>
+          <th class="">id</th>
+          <th class="">title</th>
+          <th class="">network</th>
+          <th class="">release_date</th>
+          <th class="">action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tv in tvs %}
+        <tr>
+          <td class="">{{tv.id}}</td>
+          <td class="">{{tv.title}}</td>
+          <td class="">{{tv.network}}</td>
+          <td class="">{{tv.release_date}}</td>
+          <td class="">
+            <a href="/shows/{{tv.id}}" id="show"
+              ><i class="icon-eye-open"></i></a
+            ><span>|</span
+            ><a href="/shows/{{tv.id}}/edit" id="edit"
+              ><i class="icon-pencil"></i></a
+            ><span>|</span>
+            <a href="/shows/{{tv.id}}/destroy" id="delete"
+              ><i class="icon-trash"></i
+            ></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a
+      class="uk-margin-medium-top uk-button-primary uk-padding-small"
+      href="/shows/new"
+      >Add a New Show</a
+    >
+  </body>
+</html>
