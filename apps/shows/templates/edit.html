@@ -35,6 +35,15 @@
     >
       {% csrf_token %}
       <label for="title">Title</label>
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+          {{ message }}
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
       <input
         type="text"
         id="title"
@@ -52,8 +61,8 @@
         class="uk-input"
         required
       />
-      <label for="releaseDate">Release Date</label>
-      <input type="date" name="releaseDate" id="releaseDate"
+      <label for="release_date">Release Date</label>
+      <input type="date" name="release_date" id="release_date"
       value="{{show.release_date|date:"Y-m-d"}}" class="uk-input" required />
       <label for="description">Description</label>
       <textarea

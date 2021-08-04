@@ -29,8 +29,15 @@
     <h1>Add a New Show</h1>
     <a href="/shows">Go back <i class="icon-share-alt"></i></a>
     <form action="/shows/create" method="POST" class="uk-margin uk-width-1-2">
-      {% csrf_token %}
-      <label for="title">Title</label>
+      {% csrf_token %} {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+          {{ message }}
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
       <input type="text" id="title" name="title" class="uk-input" required />
       <label for="network">Network</label>
       <input
@@ -40,11 +47,11 @@
         class="uk-input"
         required
       />
-      <label for="releaseDate">Release Date</label>
+      <label for="release_date">Release Date</label>
       <input
         type="date"
-        name="releaseDate"
-        id="releaseDate"
+        name="release_date"
+        id="release_date"
         class="uk-input"
         required
       />
