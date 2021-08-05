@@ -27,13 +27,11 @@ def create(request):
                 messages.error(request, value)
             # redirigir al usuario al formulario para corregir los errores
             return redirect(f'/shows/new')
-        else:
-            title = request.POST["title"]
-            network = request.POST["network"]
-            release_date = request.POST["release_date"]
-            description = request.POST["description"]
-            Show.objects.create(title=title,network=network,release_date=release_date,description=description)
-        lastshow = Show.objects.last()
+        title = request.POST["title"]
+        network = request.POST["network"]
+        release_date = request.POST["release_date"]
+        description = request.POST["description"]
+        lastshow = Show.objects.create(title=title,network=network,release_date=release_date,description=description)
         return redirect(f"/shows/{lastshow.id}")
 
 def shows(request,id):

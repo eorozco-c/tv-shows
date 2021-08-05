@@ -16,9 +16,9 @@ class ShowManager(models.Manager):
         if  release_date >= today:
             print(release_date, today)
             errors["release_date"] = "Fecha debe ser menor al dia de hoy"
-        for title in Show.objects.all():
-            if postData['title'] == title.title:
-                errors["release_date"] = "Ya existe ese titulo"
+        show = self.filter(title=postData['title'])
+        if show.exists():
+                errors["title"] = "Ya existe ese titulo"
         return errors
 
 class Show(models.Model):
