@@ -3,7 +3,7 @@ import datetime
 
 # Create your models here.
 class ShowManager(models.Manager):
-    def basic_validator(self, postData):
+    def basic_validator(self, postData,tipo=None):
         errors = {}
         release_date =  datetime.datetime.strptime(postData['release_date'], '%Y-%m-%d').date()
         today = datetime.date.today()
@@ -14,11 +14,11 @@ class ShowManager(models.Manager):
         if len(postData['description']) < 10 and postData['description'] != "":
             errors["description"] = "Description debe tener minimo 10 caracteres"
         if  release_date >= today:
-            print(release_date, today)
+            #print(release_date, today)
             errors["release_date"] = "Fecha debe ser menor al dia de hoy"
-        show = self.filter(title=postData['title'])
-        if show.exists():
-                errors["title"] = "Ya existe ese titulo"
+        show = self.filter(title__iexact=postData['title'])
+        if show.exists() and tipo == "create":
+            errors["title"] = "Ya existe ese titulo"
         return errors
 
 class Show(models.Model):
